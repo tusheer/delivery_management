@@ -23,6 +23,17 @@ const usersSchema = new Schema({
         type: String,
         minLength: 6,
     },
+    currentAssing: {
+        _id: Schema.ObjectId,
+        ref: 'orders',
+    },
+    orders: [
+        {
+            _id: Schema.ObjectId,
+            submitDate: Date,
+            ref: 'orders',
+        },
+    ],
 });
 const User = mongoose.model('users', usersSchema);
 module.exports = User;
