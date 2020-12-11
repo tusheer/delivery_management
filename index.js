@@ -21,6 +21,7 @@ mongoose
     .connect('mongodb://localhost:27017/test', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useCreateIndex: true,
     })
     .then(app.listen(port, () => console.log('game on')))
     .catch((err) => {
