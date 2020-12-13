@@ -13,14 +13,14 @@ const ordersSchema = new Schema(
             ref: 'users',
         },
 
-        address: {
-            type: String,
-            required: true,
-        },
         phone: {
             type: String,
             required: true,
             minLength: 11,
+        },
+        address: {
+            type: String,
+            required: true,
         },
         type: {
             type: String,
