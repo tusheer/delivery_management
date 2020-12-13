@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 
 const ordersSchema = new Schema(
     {
-        oderId: {
+        order_id: {
             type: String,
-            required: true,
+            require: true,
             unique: true,
         },
         status: {

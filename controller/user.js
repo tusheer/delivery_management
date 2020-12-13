@@ -34,9 +34,9 @@ user.signin = async (req, res) => {
         if (userObj._id) {
             return res.send({ hash });
         }
-        res.status(400).json({ message: 'User not found' });
+        return res.status(400).json({ message: 'User not found' });
     } catch (error) {
-        res.status(400).json({ message: 'User not found' });
+        return res.status(400).json({ message: 'User not found' });
     }
 };
 
@@ -52,10 +52,9 @@ user.VerifyOtp = async (req, res) => {
             const userObj = await User.findOne({ phone });
 
             const token = jwt.sign({ ...userObj }, 'developedbytusher');
-            res.send({ _id: userObj._id, name: userObj.name, phone: userObj.phone, token });
-        } else {
-            res.status(422).json({ error: 'Otp is not match' });
+            return res.send({ _id: userObj._id, name: userObj.name, phone: userObj.phone, token });
         }
+        return res.status(422).json({ error: 'Otp is not match' });
     } catch (e) {
         return res.status(422).json({ error: 'Token time is over' });
     }

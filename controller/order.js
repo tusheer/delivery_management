@@ -8,24 +8,16 @@ order.createOrder = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    // const {
-    //     orderId,
-    //     type,
-    //     address,
-    //     phone,
-    //     quantity,
-    //     totalAmount,
-    //     cashonDelivery,
-    //     status,
-    //     name,
-    //     assignBy
-    // } = req.body;
+
     try {
-        const orderCreate = new Order({ ...req.body });
+        const orderCreate = new Order({
+            ...req.body,
+        });
+        console.log(req.body);
         await orderCreate.save();
-        res.send(orderCreate);
+        return res.send(orderCreate);
     } catch (error) {
-        return res.status(422).json({ message: 'Something is wrong' });
+        return res.status(422).json({ message: 'Something is wrong', error });
     }
 };
 
@@ -33,7 +25,7 @@ order.validate = (type) => {
     switch (type) {
         case 'createOrder': {
             return [
-                body('orderId').exists(),
+                body('order_id').exists(),
                 body('type').exists(),
                 body('address').exists(),
                 body('phone').exists().isLength({ min: 11 }),
