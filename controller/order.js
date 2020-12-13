@@ -17,7 +17,7 @@ order.createOrder = async (req, res) => {
         await orderCreate.save();
         return res.send(orderCreate);
     } catch (error) {
-        return res.status(422).json({ message: 'Something is wrong', error });
+        return res.status(422).json({ message: 'Something is wrong' });
     }
 };
 

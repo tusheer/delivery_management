@@ -4,11 +4,6 @@ const { Schema } = mongoose;
 
 const ordersSchema = new Schema(
     {
-        order_id: {
-            type: String,
-            require: true,
-            unique: true,
-        },
         status: {
             type: String,
             default: 'processing',
@@ -17,10 +12,7 @@ const ordersSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'users',
         },
-        type: {
-            type: String,
-            required: true,
-        },
+
         address: {
             type: String,
             required: true,
@@ -29,6 +21,10 @@ const ordersSchema = new Schema(
             type: String,
             required: true,
             minLength: 11,
+        },
+        type: {
+            type: String,
+            required: true,
         },
         name: {
             type: String,
@@ -46,6 +42,11 @@ const ordersSchema = new Schema(
         cashonDelivery: {
             type: Boolean,
             default: true,
+        },
+        order_id: {
+            type: String,
+            require: true,
+            unique: true,
         },
     },
     { timestamps: true }
