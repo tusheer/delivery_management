@@ -24,14 +24,19 @@ const usersSchema = new Schema({
         minLength: 6,
     },
     currentAssing: {
-        _id: Schema.ObjectId,
-        ref: 'orders',
+        _id: {
+            type: Schema.Types.ObjectId,
+            ref: 'orders',
+        },
     },
     orders: [
         {
             _id: Schema.ObjectId,
-            submitDate: Date,
-            ref: 'orders',
+            submitTime: {
+                type: Date,
+                default: Date.now(),
+                ref: 'orders',
+            },
         },
     ],
 });

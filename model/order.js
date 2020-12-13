@@ -14,7 +14,7 @@ const ordersSchema = new Schema(
             default: 'processing',
         },
         assignBy: {
-            type: Schema.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'users',
         },
         type: {

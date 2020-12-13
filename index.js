@@ -7,6 +7,7 @@ const port = process.env.PORT || 4000;
 const bodyParser = require('body-parser');
 const { origin } = require('./middleware/origin');
 const userRoute = require('./route/user');
+const orderRoute = require('./route/order');
 
 app.use(origin);
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api/user', userRoute);
+app.use('/api/order', orderRoute);
 mongoose
     .connect('mongodb://localhost:27017/test', {
         useNewUrlParser: true,
