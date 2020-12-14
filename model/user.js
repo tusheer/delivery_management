@@ -24,10 +24,8 @@ const usersSchema = new Schema({
         minLength: 6,
     },
     currentAssing: {
-        _id: {
-            type: Schema.Types.ObjectId,
-            ref: 'orders',
-        },
+        type: Schema.Types.ObjectId,
+        ref: 'orders',
     },
     orders: [
         {

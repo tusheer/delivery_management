@@ -11,6 +11,7 @@ const ordersSchema = new Schema(
         assignBy: {
             type: Schema.Types.ObjectId,
             ref: 'users',
+            required: true,
         },
 
         phone: {

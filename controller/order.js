@@ -1,5 +1,6 @@
 const { validationResult, body } = require('express-validator');
 const Order = require('../model/order');
+const User = require('../model/user');
 
 const order = {};
 
@@ -13,8 +14,10 @@ order.createOrder = async (req, res) => {
         const orderCreate = new Order({
             ...req.body,
         });
-        console.log(req.body);
+        const assingUser = await User.findById(req.body.assignBy);
+        assingUser.currentAssing = orderCreate._id;
         await orderCreate.save();
+        await assingUser.save();
         return res.send(orderCreate);
     } catch (error) {
         return res.status(422).json({ message: 'Something is wrong' });
