@@ -16,8 +16,10 @@ order.createOrder = async (req, res) => {
         });
         const assingUser = await User.findById(req.body.assignBy);
         assingUser.currentAssing = orderCreate._id;
+        // I dont think not to need await here to save aissgn user.
+        assingUser.save();
         await orderCreate.save();
-        await assingUser.save();
+
         return res.send(orderCreate);
     } catch (error) {
         return res.status(422).json({ message: 'Something is wrong' });
