@@ -1,4 +1,4 @@
-const { validationResult, body } = require('express-validator');
+const { validationResult, body, check } = require('express-validator');
 const Order = require('../model/order');
 const User = require('../model/user');
 
@@ -30,10 +30,10 @@ order.validate = (type) => {
     switch (type) {
         case 'createOrder': {
             return [
-                body('order_id').exists(),
-                body('type').exists(),
+                check('order_id').exists().withMessage('Order id is must be require'),
+                check('type').exists().withMessage('Type is must be required'),
                 body('address').exists(),
-                body('phone').exists().isLength({ min: 11 }),
+                check('phone').exists().withMessage('Phone is must be require').custom(),
                 body('name').exists(),
                 body('quantity').exists(),
                 body('totalAmount').exists(),
