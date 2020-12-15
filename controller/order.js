@@ -33,7 +33,11 @@ order.validate = (type) => {
                 check('order_id').exists().withMessage('Order id is must be require'),
                 check('type').exists().withMessage('Type is must be required'),
                 body('address').exists(),
-                check('phone').exists().withMessage('Phone is must be require').custom(),
+                check('phone')
+                    .exists()
+                    .withMessage('Phone is must be require')
+                    .matches(/\d/)
+                    .withMessage('must contain a bd number'),
                 body('name').exists(),
                 body('quantity').exists(),
                 body('totalAmount').exists(),
