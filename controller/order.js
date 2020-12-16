@@ -30,17 +30,18 @@ order.validate = (type) => {
     switch (type) {
         case 'createOrder': {
             return [
-                check('order_id').exists().withMessage('Order id is must be require'),
+                check('order_id')
+                    .exists({ checkFalsy: true })
+                    .withMessage('Order id is must be require'),
                 check('type').exists().withMessage('Type is must be required'),
-                body('address').exists(),
+                body('address').exists({ checkFalsy: true }),
                 check('phone')
-                    .exists()
-                    .withMessage('Phone is must be require')
                     .matches(/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/)
-                    .withMessage('must contain a bd number'),
-                body('name').exists(),
-                body('quantity').exists(),
-                body('totalAmount').exists(),
+                    .withMessage('Number must be valid BD number'),
+                check('name').exists({ checkFalsy: true }).withMessage('Name is must be require'),
+                check('quantity').isNumeric().withMessage('Quantity is must be number'),
+                check('totalAmount').isNumeric().withMessage('Total ammount must be number'),
+
                 body('cashonDelivery').optional(),
                 body('status').optional(),
             ];
