@@ -38,7 +38,7 @@ order.validate = (type) => {
                 check('phone')
                     .matches(/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/)
                     .withMessage('Number must be valid BD number')
-                    .equals()
+                    .exists({ checkFalsy: true })
                     .withMessage('Number must be required'),
                 check('name').exists({ checkFalsy: true }).withMessage('Name is must be require'),
                 check('quantity').isNumeric().withMessage('Quantity is must be number'),
